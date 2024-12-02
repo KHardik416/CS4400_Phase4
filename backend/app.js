@@ -1,0 +1,463 @@
+const express = require("express");
+const mysql = require("mysql2");
+require("dotenv").config();
+
+const app = express();
+const port = 3030;
+
+app.use(express.json());
+
+// MySQL connection
+const db = mysql.createConnection({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+});
+
+db.connect((err) => {
+  if (err) {
+    console.error("Error connecting to MySQL:", err);
+    return;
+  }
+
+  console.log("Connected to MySQL");
+});
+
+// Getting Views
+app.get("/owner_view", (req, res) => {
+  const query = "Select * from display_owner_view";
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Error fetching data from the view");
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+app.get("/employee_view", (req, res) => {
+  const query = "Select * from display_employee_view";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error fetching data from the view");
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+app.get("/driver_view", (req, res) => {
+  const query = "Select * from display_driver_view";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error fetching data from the view");
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+app.get("/location_view", (req, res) => {
+  const query = "Select * from display_location_view";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error fetching data from the view");
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+app.get("/product_view", (req, res) => {
+  const query = "Select * from display_product_view";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error fetching data from the view");
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+app.get("/service_view", (req, res) => {
+  const query = "Select * from display_service_view";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error fetching data from the view");
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Adding to database
+app.post("/add_owner", (req, res) => {
+  const { ip_username, ip_first_name, ip_last_name, ip_address, ip_birthdate } =
+    req.body;
+
+  if (
+    !ip_username ||
+    !ip_first_name ||
+    !ip_last_name ||
+    !ip_address ||
+    !ip_birthdate
+  ) {
+    return res.status(400).send("All fields are required");
+  }
+
+  const query = "Call add_owner(?, ?, ?, ?, ?)";
+  const params = [
+    ip_username,
+    ip_first_name,
+    ip_last_name,
+    ip_address,
+    ip_birthdate,
+  ];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.log("Error executing prodecure: ", err);
+      res.status(500).send("Error adding owner.");
+    } else {
+      res.status(200).send("Owner added successfully");
+    }
+  });
+});
+
+app.post("/add_employee", (res, req) => {
+  const {
+    ip_username,
+    ip_first_name,
+    ip_last_name,
+    ip_address,
+    ip_birthdate,
+    ip_taxID,
+    ip_hired,
+    ip_employee_experience,
+    ip_salary,
+  } = req.body;
+
+  if (
+    !ip_username ||
+    !ip_first_name ||
+    !ip_last_name ||
+    !ip_address ||
+    !ip_birthdate ||
+    !ip_taxID ||
+    !ip_hired ||
+    !ip_employee_experience ||
+    !ip_salary
+  ) {
+    return res.status(400).send("All fields are required");
+  }
+
+  const query = "Call add_employee(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  params = [
+    ip_username,
+    ip_first_name,
+    ip_last_name,
+    ip_address,
+    ip_birthdate,
+    ip_taxID,
+    ip_hired,
+    ip_employee_experience,
+    ip_salary,
+  ];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.log("Error executing prodecure: ", err);
+      res.status(500).send("Error adding employee.");
+    } else {
+      res.status(200).send("Employee added successfully");
+    }
+  });
+});
+
+app.post("/add_driver", (res, req) => {
+  const { ip_username, ip_licenseID, ip_license_type, ip_driver_experience } =
+    req.body;
+
+  if (
+    !ip_username ||
+    !ip_licenseID ||
+    !ip_license_type ||
+    !ip_driver_experience
+  ) {
+    return res.status(400).send("All fields are required");
+  }
+
+  const query = "Call add_driver_role(?, ?, ?, ?)";
+  params = [ip_username, ip_licenseID, ip_license_type, ip_driver_experience];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.log("Error executing prodecure: ", err);
+      res.status(500).send("Error adding driver.");
+    } else {
+      res.status(200).send("Driver added successfully");
+    }
+  });
+});
+
+app.post("/add_worker", (res, req) => {
+  const { ip_username } = req.body;
+
+  if (!ip_username) {
+    return res.status(400).send("All fields are required");
+  }
+
+  const query = "Call add_worker_role(?)";
+  params = [ip_username];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.log("Error executing prodecure: ", err);
+      res.status(500).send("Error adding worker.");
+    } else {
+      res.status(200).send("Worker added successfully");
+    }
+  });
+});
+
+app.post("/add_product", (res, req) => {
+  const { ip_barcode, ip_name, ip_weight } = req.body;
+  if (!ip_barcode || !ip_name || !ip_weight) {
+    res.status(400).send("All fields required");
+  }
+
+  const query = "Call add_product(?, ?, ?)";
+  params = [ip_barcode, ip_name, ip_weight];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.log("Error executing prodecure: ", err);
+      res.status(500).send("Error adding product.");
+    } else {
+      res.status(200).send("Product added successfully");
+    }
+  });
+});
+
+app.post("/add_van", (res, req) => {
+  const {
+    ip_id,
+    ip_tag,
+    ip_fuel,
+    ip_capacity,
+    ip_sales,
+    ip_driven_by = "null",
+  } = req.body;
+
+  if (!ip_id || !ip_tag || !ip_fuel || !ip_capacity || !ip_sales) {
+    res.status(400).send("All fields except Driven By is required!");
+  }
+
+  const query = "Call add_van(?, ?, ?, ?, ?, ?)";
+  params = [ip_id, ip_tag, ip_fuel, ip_capacity, ip_sales, ip_driven_by];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.log("Error executing prodecure: ", err);
+      res.status(500).send("Error adding van.");
+    } else {
+      res.status(200).send("Van added successfully");
+    }
+  });
+});
+
+app.post("/add_business", (res, req) => {
+  const { ip_long_name, ip_rating, ip_spent, ip_location } = req.body;
+
+  if (!ip_long_name || !ip_rating || !ip_spent || !ip_location) {
+    res.status(400).send("All fields are required!");
+  }
+
+  const query = "Call add_business(?, ?, ?, ?)";
+  params = [ip_long_name, ip_rating, ip_spent, ip_location];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.log("Error executing prodecure: ", err);
+      res.status(500).send("Error adding business.");
+    } else {
+      res.status(200).send("Business has been added successfully");
+    }
+  });
+});
+
+app.post("/add_service", (res, req) => {
+  const { ip_id, ip_long_name, ip_home_base, ip_manager = "null" } = req.body;
+
+  if (!ip_long_name || !ip_id || !ip_home_base) {
+    res.status(400).send("All fields except Manager is required!");
+  }
+
+  const query = "Call add_service(?, ?, ?, ?)";
+  params = [ip_id, ip_long_name, ip_home_base, ip_manager];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.log("Error executing prodecure: ", err);
+      res.status(500).send("Error adding service.");
+    } else {
+      res.status(200).send("Service has been added successfully");
+    }
+  });
+});
+
+app.post("/add_location", (res, req) => {
+  const { ip_label, ip_x_coord, ip_y_coord, ip_space = "null" } = req.body;
+
+  if (!ip_label || !ip_x_coord || !ip_y_coord) {
+    res.status(400).send("All fields except Space is required!");
+  }
+
+  const query = "Call add_location(?, ?, ?, ?)";
+  params = [ip_label, ip_x_coord, ip_y_coord, ip_space];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.log("Error executing prodecure: ", err);
+      res.status(500).send("Error adding location.");
+    } else {
+      res.status(200).send("Location has been added successfully");
+    }
+  });
+});
+
+app.post("/start_funding", (res, req) => {
+  const { ip_owner, ip_amount = "null", ip_long_name, ip_fund_date } = req.body;
+  if (!ip_owner || !ip_long_name || !ip_fund_date) {
+    res.status(400).send("Need to fill in all the fields except amount");
+  }
+
+  const query = "Call start_funding(?, ?, ?, ?)";
+  params = [ip_owner, ip_amount, ip_long_name, ip_fund_date];
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.log("Error executing prodecure: ", err);
+      res.status(500).send("Error funding.");
+    } else {
+      res.status(200).send("You have started funding successfully");
+    }
+  });
+});
+
+app.post("/hire_employee", (res, req) => {
+  const { ip_username, ip_id } = req.body;
+  if (!ip_username || !ip_id) {
+    res.status(400).send("Need to fill in all the fields!");
+  }
+
+  const query = "Call hire_employee(?, ?)";
+  params = [ip_username, ip_id];
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.log("Error executing prodecure: ", err);
+      res.status(500).send("Error hiring employee.");
+    } else {
+      res.status(200).send("You have hired the employee successfully");
+    }
+  });
+});
+
+// Removing from database
+app.delete("/fire_employee", (res, req) => {
+  const { ip_username, ip_id } = req.body;
+
+  if (!ip_username || !ip_id) {
+    res.status(400).send("Both username and ID are required!");
+  }
+
+  const query = "Call fire_employee(?, ?)";
+  const params = [ip_username, ip_id];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.error("Error executing procedure:", err);
+      return res.status(500).send("Error firing employee.");
+    }
+
+    res.status(200).send("Employee successfully fired.");
+  });
+});
+
+app.delete("/remove_product", (res, req) => {
+  const { ip_barcode } = req.body;
+
+  if (!ip_barcode) {
+    res.status(400).send("Barcode is required!");
+  }
+
+  const query = "Call remove_product(?)";
+  const params = [ip_barcode];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.error("Error executing procedure:", err);
+      return res.status(500).send("Error removing product.");
+    }
+
+    res.status(200).send("Product removed successfully.");
+  });
+});
+
+app.delete("/remove_van", (res, req) => {
+  const { ip_id, ip_tag } = req.body;
+
+  if (!ip_id || !ip_tag) {
+    res.status(400).send("Both id and tag are required!");
+  }
+
+  const query = "Call remove_van(?, ?)";
+  const params = [ip_id, ip_tag];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.error("Error executing procedure:", err);
+      return res.status(500).send("Error removing van.");
+    }
+
+    res.status(200).send("Van has been removed successfully.");
+  });
+});
+
+app.delete("/remove_driver", (res, req) => {
+  const { ip_username } = req.body;
+
+  if (!ip_username) {
+    res.status(400).send("Username is required!");
+  }
+
+  const query = "Call remove_product(?)";
+  const params = [ip_username];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.error("Error executing procedure:", err);
+      return res.status(500).send("Error removing driver.");
+    }
+
+    res.status(200).send("Driver has been removed successfully.");
+  });
+});
+
+// Home Page
+app.get("/", (req, res) => {
+  res.send("Server is running");
+});
+
+app.listen(port, () => console.log(`Server running on port ${port}`));
