@@ -1,0 +1,40 @@
+/* AddEmployee.css */
+
+.add-employee-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-employee-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.add-employee-form label {
+    display: block;
+}
+
+.add-employee-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cancel-button {
+    padding: 10px 20px;
+    background: #ccc;
+    border: none;
+    border-radius: 3px;
+}
+
+.add-button {
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+}
