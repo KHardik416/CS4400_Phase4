@@ -1,23 +1,45 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
-import "../Global.css"; 
+import { useNavigate } from "react-router-dom";
+import "../Global.css";
 
 const FireEmployee = () => {
   const [formData, setFormData] = useState({
     username: "",
-    businessID: ""
+    businessID: "",
   });
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Employee Fired:", formData);
+    try {
+      const response = await fetch("http://localhost:3030/fire_employee", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ip_username: formData.username,
+          ip_id: formData.businessID,
+        }),
+      });
+
+      if (response.ok) {
+        alert("Successfully fired employee!");
+        navigate("/");
+      } else {
+        const errorMessage = await response.text();
+        alert(`Error: ${errorMessage}`);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   const handleCancel = () => {
@@ -42,8 +64,8 @@ const FireEmployee = () => {
             businessID
             <input
               type="text"
-              name="first_name"
-              value={formData.first_name}
+              name="businessID"
+              value={formData.businessID}
               onChange={handleChange}
             />
           </label>
