@@ -93,6 +93,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">Dashboard</header>
+      <h2 className="choose-category-heading">Choose a category:</h2>
       <div className="dashboard-content">
         {menuItems.map((menu, index) => (
           <div key={index} className="dropdown">
