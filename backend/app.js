@@ -136,7 +136,8 @@ app.post("/add_owner", (req, res) => {
   });
 });
 
-app.post("/add_employee", (res, req) => {
+app.post("/add_employee", (req, res) => {
+  console.log("Request Body:", req.body);
   const {
     ip_username,
     ip_first_name,
@@ -186,7 +187,7 @@ app.post("/add_employee", (res, req) => {
   });
 });
 
-app.post("/add_driver", (res, req) => {
+app.post("/add_driver", (req, res) => {
   const { ip_username, ip_licenseID, ip_license_type, ip_driver_experience } =
     req.body;
 
@@ -201,6 +202,7 @@ app.post("/add_driver", (res, req) => {
 
   const query = "Call add_driver_role(?, ?, ?, ?)";
   params = [ip_username, ip_licenseID, ip_license_type, ip_driver_experience];
+  console.log(params);
 
   db.query(query, params, (err, results) => {
     if (err) {
@@ -212,7 +214,7 @@ app.post("/add_driver", (res, req) => {
   });
 });
 
-app.post("/add_worker", (res, req) => {
+app.post("/add_worker", (req, res) => {
   const { ip_username } = req.body;
 
   if (!ip_username) {
@@ -232,7 +234,7 @@ app.post("/add_worker", (res, req) => {
   });
 });
 
-app.post("/add_product", (res, req) => {
+app.post("/add_product", (req, res) => {
   const { ip_barcode, ip_name, ip_weight } = req.body;
   if (!ip_barcode || !ip_name || !ip_weight) {
     res.status(400).send("All fields required");
@@ -251,7 +253,7 @@ app.post("/add_product", (res, req) => {
   });
 });
 
-app.post("/add_van", (res, req) => {
+app.post("/add_van", (req, res) => {
   const {
     ip_id,
     ip_tag,
@@ -278,7 +280,7 @@ app.post("/add_van", (res, req) => {
   });
 });
 
-app.post("/add_business", (res, req) => {
+app.post("/add_business", (req, res) => {
   const { ip_long_name, ip_rating, ip_spent, ip_location } = req.body;
 
   if (!ip_long_name || !ip_rating || !ip_spent || !ip_location) {
@@ -298,7 +300,7 @@ app.post("/add_business", (res, req) => {
   });
 });
 
-app.post("/add_service", (res, req) => {
+app.post("/add_service", (req, res) => {
   const { ip_id, ip_long_name, ip_home_base, ip_manager = "null" } = req.body;
 
   if (!ip_long_name || !ip_id || !ip_home_base) {
@@ -318,7 +320,7 @@ app.post("/add_service", (res, req) => {
   });
 });
 
-app.post("/add_location", (res, req) => {
+app.post("/add_location", (req, res) => {
   const { ip_label, ip_x_coord, ip_y_coord, ip_space = "null" } = req.body;
 
   if (!ip_label || !ip_x_coord || !ip_y_coord) {
@@ -338,7 +340,7 @@ app.post("/add_location", (res, req) => {
   });
 });
 
-app.post("/start_funding", (res, req) => {
+app.post("/start_funding", (req, res) => {
   const { ip_owner, ip_amount = "null", ip_long_name, ip_fund_date } = req.body;
   if (!ip_owner || !ip_long_name || !ip_fund_date) {
     res.status(400).send("Need to fill in all the fields except amount");
@@ -356,7 +358,7 @@ app.post("/start_funding", (res, req) => {
   });
 });
 
-app.post("/hire_employee", (res, req) => {
+app.post("/hire_employee", (req, res) => {
   const { ip_username, ip_id } = req.body;
   if (!ip_username || !ip_id) {
     res.status(400).send("Need to fill in all the fields!");
@@ -375,7 +377,7 @@ app.post("/hire_employee", (res, req) => {
 });
 
 // Removing from database
-app.delete("/fire_employee", (res, req) => {
+app.delete("/fire_employee", (req, res) => {
   const { ip_username, ip_id } = req.body;
 
   if (!ip_username || !ip_id) {
@@ -395,7 +397,7 @@ app.delete("/fire_employee", (res, req) => {
   });
 });
 
-app.delete("/remove_product", (res, req) => {
+app.delete("/remove_product", (req, res) => {
   const { ip_barcode } = req.body;
 
   if (!ip_barcode) {
@@ -415,7 +417,7 @@ app.delete("/remove_product", (res, req) => {
   });
 });
 
-app.delete("/remove_van", (res, req) => {
+app.delete("/remove_van", (req, res) => {
   const { ip_id, ip_tag } = req.body;
 
   if (!ip_id || !ip_tag) {
@@ -435,7 +437,7 @@ app.delete("/remove_van", (res, req) => {
   });
 });
 
-app.delete("/remove_driver", (res, req) => {
+app.delete("/remove_driver", (req, res) => {
   const { ip_username } = req.body;
 
   if (!ip_username) {
@@ -456,7 +458,7 @@ app.delete("/remove_driver", (res, req) => {
 });
 
 // Update rows in database
-app.put("/manage_service", (res, req) => {
+app.put("/manage_service", (req, res) => {
   const { ip_username, ip_id } = req.body;
 
   if (!ip_username || !ip_id) {
@@ -476,7 +478,7 @@ app.put("/manage_service", (res, req) => {
   });
 });
 
-app.put("/takeover_van", (res, req) => {
+app.put("/takeover_van", (req, res) => {
   const { ip_username = "null", ip_id, ip_tag } = req.body;
 
   if (!ip_username || !ip_id) {
@@ -496,7 +498,7 @@ app.put("/takeover_van", (res, req) => {
   });
 });
 
-app.put("/load_van", (res, req) => {
+app.put("/load_van", (req, res) => {
   const { ip_id, ip_tag, ip_barcode, ip_more_packages, ip_price } = req.body;
   if (!ip_id || !ip_tag || !ip_barcode || !ip_more_packages || !ip_price) {
     return res.status(400).send("All fields are required!");
@@ -515,7 +517,7 @@ app.put("/load_van", (res, req) => {
   });
 });
 
-app.put("/refuel_van", (res, req) => {
+app.put("/refuel_van", (req, res) => {
   const { ip_id, ip_tag, ip_more_fuel } = req.body;
   if (!ip_id || !ip_tag || !ip_more_fuel) {
     return res.status(400).send("All fields are required!");
@@ -534,7 +536,7 @@ app.put("/refuel_van", (res, req) => {
   });
 });
 
-app.put("/drive_van", (res, req) => {
+app.put("/drive_van", (req, res) => {
   const { ip_departure, ip_arrival } = req.body;
   if (!ip_departure || !ip_arrival) {
     return res.status(400).send("All fields are required!");
@@ -553,7 +555,7 @@ app.put("/drive_van", (res, req) => {
   });
 });
 
-app.put("/purchase_product", (res, req) => {
+app.put("/purchase_product", (req, res) => {
   const { ip_long_name, ip_id, ip_tag, ip_barcode, ip_quantity } = req.body;
 
   if (!ip_long_name || !ip_id || !ip_tag || !ip_barcode || !ip_quantity) {
