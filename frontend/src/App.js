@@ -14,6 +14,13 @@ import LoadVan from "./components/Vans/LoadVan";
 import RefuelVan from "./components/Vans/RefuelVan";
 import DriveVan from "./components/Vans/DriveVan";
 import RemoveVan from "./components/Vans/RemoveVan";
+import AddDriver from "./components/Driver/AddDriver";
+import RemoveDriver from "./components/Driver/RemoveDriver";
+import AddService from "./components/Service/AddService";
+import ManageService from "./components/Service/ManageService";
+import AddProduct from "./components/Product/AddProduct";
+import PurchaseProduct from "./components/Product/PurchaseProduct";
+import RemoveProduct from "./components/Product/RemoveProduct";
 
 function App() {
   return (
@@ -33,6 +40,13 @@ function App() {
         <Route path="/refuel-van" element={<RefuelVan />} />
         <Route path="/drive-van" element={<DriveVan />} />
         <Route path="/remove-van" element={<RemoveVan />} />
+        <Route path="/add-driver" element={<AddDriver />} />
+        <Route path="/remove-driver" element={<RemoveDriver />} />
+        <Route path="/add-service" element={<AddService />} />
+        <Route path="/manage-service" element={<ManageService />} />
+        <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/purchase-product" element={<PurchaseProduct />} />
+        <Route path="/remove-product" element={<RemoveProduct />} />
       </Routes>
     </Router>
   );

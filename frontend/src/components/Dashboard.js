@@ -50,7 +50,28 @@ const Dashboard = () => {
                 break;   
             case "Remove Van":
                 navigate("/remove-van");
-                break;           
+                break; 
+            case "Add Driver":
+                navigate("/add-driver");
+                break;
+            case "Remove Driver":
+                navigate("/remove-driver");
+                break;  
+            case "Add Service":
+                navigate("/add-service");
+                break;  
+            case "Manage Service":
+                navigate("/manage-service");
+                break;
+            case "Add Product":
+                navigate("/add-product");
+                break;   
+            case "Purchase Product":
+                navigate("/purchase-product");
+                break;  
+            case "Remove Product":
+                navigate("/remove-product");
+                break;             
                 
                 
             // Add similar cases for other menu options here
