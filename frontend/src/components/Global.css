@@ -111,7 +111,8 @@ select:focus {
     position: relative;
     color: #F3F3F3;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: var(--m);
+    font-size: 0.5 * var(--m);
+    font-weight: bold;
     border-radius: calc(0.7 * var(--m));
     padding: calc(0.5 * var(--m)) calc(1 * var(--m));
     display: flex;
