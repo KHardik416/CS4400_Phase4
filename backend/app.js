@@ -399,7 +399,7 @@ app.delete("/remove_product", (res, req) => {
   const { ip_barcode } = req.body;
 
   if (!ip_barcode) {
-    res.status(400).send("Barcode is required!");
+    return res.status(400).send("Barcode is required!");
   }
 
   const query = "Call remove_product(?)";
@@ -452,6 +452,124 @@ app.delete("/remove_driver", (res, req) => {
     }
 
     res.status(200).send("Driver has been removed successfully.");
+  });
+});
+
+// Update rows in database
+app.put("/manage_service", (res, req) => {
+  const { ip_username, ip_id } = req.body;
+
+  if (!ip_username || !ip_id) {
+    return res.status(400).send("Username and ID are required!");
+  }
+
+  const query = "Call manage_service(?, ?)";
+  params = [ip_username, ip_id];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.error("Error executing procedure:", err);
+      return res.status(500).send("Error error managing service.");
+    } else {
+      res.status(200).send("Managed service successfully.");
+    }
+  });
+});
+
+app.put("/takeover_van", (res, req) => {
+  const { ip_username = "null", ip_id, ip_tag } = req.body;
+
+  if (!ip_username || !ip_id) {
+    return res.status(400).send("Username and ID are required!");
+  }
+
+  const query = "Call takeover_van(?, ?, ?)";
+  params = [ip_username, ip_id, ip_tag];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.error("Error executing procedure:", err);
+      return res.status(500).send("Error error taking over van.");
+    } else {
+      res.status(200).send("Successfully taked over van.");
+    }
+  });
+});
+
+app.put("/load_van", (res, req) => {
+  const { ip_id, ip_tag, ip_barcode, ip_more_packages, ip_price } = req.body;
+  if (!ip_id || !ip_tag || !ip_barcode || !ip_more_packages || !ip_price) {
+    return res.status(400).send("All fields are required!");
+  }
+
+  const query = "Call load_van(?, ?, ?, ?, ?)";
+  params = [ip_id, ip_tag, ip_barcode, ip_more_packages, ip_price];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.error("Error executing procedure:", err);
+      return res.status(500).send("Error error loading the van.");
+    } else {
+      res.status(200).send("Successfully loaded the van.");
+    }
+  });
+});
+
+app.put("/refuel_van", (res, req) => {
+  const { ip_id, ip_tag, ip_more_fuel } = req.body;
+  if (!ip_id || !ip_tag || !ip_more_fuel) {
+    return res.status(400).send("All fields are required!");
+  }
+
+  const query = "Call refuel_van(?, ?, ?)";
+  params = [ip_id, ip_tag, ip_more_fuel];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.error("Error executing procedure:", err);
+      return res.status(500).send("Error error refueling the van.");
+    } else {
+      res.status(200).send("Successfully refeuled the van.");
+    }
+  });
+});
+
+app.put("/drive_van", (res, req) => {
+  const { ip_departure, ip_arrival } = req.body;
+  if (!ip_departure || !ip_arrival) {
+    return res.status(400).send("All fields are required!");
+  }
+
+  const query = "Call drive_van(?, ?)";
+  params = [ip_departure, ip_arrival];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.error("Error executing procedure:", err);
+      return res.status(500).send("Error driving the van.");
+    } else {
+      res.status(200).send("Successfully droving the van.");
+    }
+  });
+});
+
+app.put("/purchase_product", (res, req) => {
+  const { ip_long_name, ip_id, ip_tag, ip_barcode, ip_quantity } = req.body;
+
+  if (!ip_long_name || !ip_id || !ip_tag || !ip_barcode || !ip_quantity) {
+    return res.status(400).send("All fields are required!");
+  }
+
+  const query = "Call purchase_product(?, ?, ?, ?, ?)";
+  params = [ip_long_name, ip_id, ip_tag, ip_barcode, ip_quantity];
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.error("Error executing procedure:", err);
+      return res.status(500).send("Error purchasing the product.");
+    } else {
+      res.status(200).send("Successfully purchased the product.");
+    }
   });
 });
 
