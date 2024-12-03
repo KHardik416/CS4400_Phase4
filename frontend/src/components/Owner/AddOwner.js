@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "../Global.css"; 
 
-const HireEmployee = () => {
+const AddOwner = () => {
   const [formData, setFormData] = useState({
     username: "",
-    businessID: ""
+    first_name: "",
+    last_name: "",
+    address: "",
+    birthdate: "",
   });
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,7 +20,7 @@ const HireEmployee = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Employee Hired:", formData);
+    console.log("Owner Data Submitted:", formData);
   };
 
   const handleCancel = () => {
@@ -26,7 +29,7 @@ const HireEmployee = () => {
 
   return (
     <div className="container">
-      <h2>Hire Employee</h2>
+      <h2>Add Owner</h2>
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
@@ -39,11 +42,38 @@ const HireEmployee = () => {
             />
           </label>
           <label>
-            businessID
+            birthdate
+            <input
+              type="date" 
+              name="birthdate"
+              value={formData.birthdate}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            first_name
             <input
               type="text"
               name="first_name"
               value={formData.first_name}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            last_name
+            <input
+              type="text"
+              name="last_name"
+              value={formData.last_name}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            address
+            <input
+              type="text"
+              name="address"
+              value={formData.address}
               onChange={handleChange}
             />
           </label>
@@ -57,7 +87,7 @@ const HireEmployee = () => {
             Cancel
           </button>
           <button type="submit" className="add-button">
-            Hire
+            Add
           </button>
         </div>
       </form>
@@ -65,4 +95,4 @@ const HireEmployee = () => {
   );
 };
 
-export default HireEmployee;
+export default AddOwner;

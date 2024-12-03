@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
 import "../Global.css"; 
 
-const HireEmployee = () => {
+const FireEmployee = () => {
   const [formData, setFormData] = useState({
     username: "",
     businessID: ""
@@ -17,7 +17,7 @@ const HireEmployee = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Employee Hired:", formData);
+    console.log("Employee Fired:", formData);
   };
 
   const handleCancel = () => {
@@ -26,7 +26,7 @@ const HireEmployee = () => {
 
   return (
     <div className="container">
-      <h2>Hire Employee</h2>
+      <h2>Fire Employee</h2>
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
@@ -57,7 +57,7 @@ const HireEmployee = () => {
             Cancel
           </button>
           <button type="submit" className="add-button">
-            Hire
+            Remove
           </button>
         </div>
       </form>
@@ -65,4 +65,4 @@ const HireEmployee = () => {
   );
 };
 
-export default HireEmployee;
+export default FireEmployee;

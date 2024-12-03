@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "../Global.css"; 
 
-const HireEmployee = () => {
+const StartFunding = () => {
   const [formData, setFormData] = useState({
-    username: "",
-    businessID: ""
+    owner: "",
+    amount: "",
+    business_name: "",
+    fund_date: "",
   });
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,7 +19,7 @@ const HireEmployee = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Employee Hired:", formData);
+    console.log("Fund Data Submitted:", formData);
   };
 
   const handleCancel = () => {
@@ -26,24 +28,42 @@ const HireEmployee = () => {
 
   return (
     <div className="container">
-      <h2>Hire Employee</h2>
+      <h2>Fund a Business</h2>
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
-            username
+            owner name
             <input
               type="text"
-              name="username"
-              value={formData.username}
+              name="owner"
+              value={formData.owner}
               onChange={handleChange}
             />
           </label>
           <label>
-            businessID
+            amount
+            <input
+              type="number" 
+              name="amount"
+              value={formData.amount}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            business_name
             <input
               type="text"
-              name="first_name"
-              value={formData.first_name}
+              name="business_name"
+              value={formData.business_name}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            fund_date
+            <input
+              type="date"
+              name="fund_date"
+              value={formData.fund_date}
               onChange={handleChange}
             />
           </label>
@@ -57,7 +77,7 @@ const HireEmployee = () => {
             Cancel
           </button>
           <button type="submit" className="add-button">
-            Hire
+            Fund
           </button>
         </div>
       </form>
@@ -65,4 +85,4 @@ const HireEmployee = () => {
   );
 };
 
-export default HireEmployee;
+export default StartFunding;

@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "../Global.css"; 
 
-const HireEmployee = () => {
+const AddLocation = () => {
   const [formData, setFormData] = useState({
-    username: "",
-    businessID: ""
+    label: "",
+    x_coord: "",
+    y_coord: "",
+    space: "",
   });
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,7 +19,7 @@ const HireEmployee = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Employee Hired:", formData);
+    console.log("Location Data Submitted:", formData);
   };
 
   const handleCancel = () => {
@@ -26,24 +28,42 @@ const HireEmployee = () => {
 
   return (
     <div className="container">
-      <h2>Hire Employee</h2>
+      <h2>Add Location</h2>
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
-            username
+            name
             <input
               type="text"
-              name="username"
-              value={formData.username}
+              name="label"
+              value={formData.label}
               onChange={handleChange}
             />
           </label>
           <label>
-            businessID
+            rating
             <input
-              type="text"
-              name="first_name"
-              value={formData.first_name}
+              type="number" 
+              name="x_coord"
+              value={formData.x_coord}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            spent
+            <input
+              type="number"
+              name="y_coord"
+              value={formData.y_coord}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            location
+            <input
+              type="number"
+              name="space"
+              value={formData.space}
               onChange={handleChange}
             />
           </label>
@@ -57,7 +77,7 @@ const HireEmployee = () => {
             Cancel
           </button>
           <button type="submit" className="add-button">
-            Hire
+            Add
           </button>
         </div>
       </form>
@@ -65,4 +85,4 @@ const HireEmployee = () => {
   );
 };
 
-export default HireEmployee;
+export default AddLocation;

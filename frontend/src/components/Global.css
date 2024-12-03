@@ -1,6 +1,6 @@
-/* HireEmployee.css */
+/* Global.css */
 
-.hire-employee-container {
+.container {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
@@ -8,17 +8,17 @@
     border-radius: 5px;
 }
 
-.hire-employee-form {
+.form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
 }
 
-.hire-employee-form label {
+.form label {
     display: block;
 }
 
-.hire-employee-actions {
+.actions {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;

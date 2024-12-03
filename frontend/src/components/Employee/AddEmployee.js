@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./AddEmployee.css"; 
+import "../Global.css"; 
 
 const AddEmployee = () => {
   const [formData, setFormData] = useState({
@@ -32,10 +32,10 @@ const AddEmployee = () => {
   };
 
   return (
-    <div className="add-employee-container">
+    <div className="container">
       <h2>Add Employee</h2>
       <form onSubmit={handleSubmit}>
-        <div className="add-employee-form">
+        <div className="form">
           <label>
             username
             <input
@@ -118,7 +118,7 @@ const AddEmployee = () => {
             />
           </label>
         </div>
-        <div className="add-employee-actions">
+        <div className="actions">
           <button
             type="button"
             onClick={handleCancel}

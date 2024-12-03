@@ -10,22 +10,36 @@ const Dashboard = () => {
     setActiveDropdown(activeDropdown === index ? null : index);
   };
 
-  const handleNavigation = (option) => {
-    switch (option) {
-      case "Add Employee":
-        navigate("/add-employee");
-        break;
-      case "Hire Employee":
-        navigate("/hire-employee");
-        break;
-      case "Fire Employee":
-        navigate("/fire-employee");
-        break;
-      // Add similar cases for other menu options here
-      default:
-        console.log(`No route defined for: ${option}`);
-    }
-  };
+    const handleNavigation = (option) => {
+        switch (option) {
+            case "Add Employee":
+                navigate("/add-employee");
+                break;
+            case "Hire Employee":
+                navigate("/hire-employee");
+                break;
+            case "Fire Employee":
+                navigate("/fire-employee");
+                break;
+            case "Add Owner":
+                navigate("/add-owner");
+                break;
+            case "Add Business":
+                navigate("/add-business");
+                break;
+            case "Add Location":
+                navigate("/add-location");
+                break;   
+            case "Start Funding":
+                navigate("/start-funding");
+                break;         
+                
+                
+            // Add similar cases for other menu options here
+            default:
+                console.log(`No route defined for: ${option}`);
+        }
+    };
 
   const menuItems = [
     { label: "Employees", options: ["Add Employee", "Hire Employee", "Fire Employee"] },
