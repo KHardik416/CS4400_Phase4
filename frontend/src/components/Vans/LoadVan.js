@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Global.css"; 
 
-const StartFunding = () => {
+const LoadVan = () => {
   const [formData, setFormData] = useState({
-    owner: "",
-    amount: "",
-    business_name: "",
-    fund_date: "",
+    ID: "",
+    tag: "",
+    barcode: "",
+    num_packages: "",
+    price: "", 
   });
 
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const StartFunding = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Fund Data Submitted:", formData);
+    console.log("Van Data Submitted:", formData);
   };
 
   const handleCancel = () => {
@@ -28,44 +29,53 @@ const StartFunding = () => {
 
   return (
     <div className="container">
-      <h2>Fund a Business</h2>
+      <h2>Add Van</h2>
       <form onSubmit={handleSubmit}>
         <div className="form">
-        {/* Change to drop down based on database */}
           <label>
-            owner name
+        {/* Change to drop down based on database service ID*/}
+            ID
             <input
               type="text"
-              name="owner"
-              value={formData.owner}
+              name="ID"
+              value={formData.ID}
               onChange={handleChange}
             />
           </label>
           <label>
-            amount
+            tag
             <input
               type="number" 
-              name="amount"
-              value={formData.amount}
+              name="tag"
+              value={formData.tag}
               onChange={handleChange}
             />
           </label>
           <label>
-            {/* Change to drop down based on database */}
-            business_name
+            {/* Change to drop down based on database product barcode*/}
+            barcode
             <input
               type="text"
-              name="business_name"
-              value={formData.business_name}
+              name="barcode"
+              value={formData.barcode}
               onChange={handleChange}
             />
           </label>
           <label>
-            fund_date
+            num. packages
             <input
-              type="date"
-              name="fund_date"
-              value={formData.fund_date}
+              type="number"
+              name="num_packages"
+              value={formData.num_packages}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            price
+            <input
+              type="number"
+              name="price"
+              value={formData.price}
               onChange={handleChange}
             />
           </label>
@@ -79,7 +89,7 @@ const StartFunding = () => {
             Cancel
           </button>
           <button type="submit" className="add-button">
-            Fund
+            Deliver
           </button>
         </div>
       </form>
@@ -87,4 +97,4 @@ const StartFunding = () => {
   );
 };
 
-export default StartFunding;
+export default LoadVan;

@@ -32,7 +32,25 @@ const Dashboard = () => {
                 break;   
             case "Start Funding":
                 navigate("/start-funding");
-                break;         
+                break;  
+            case "Add Van":
+                navigate("/add-van");
+                break;  
+            case "Takeover Van":
+                navigate("/takeover-van");
+                break;    
+            case "Load Van":
+                navigate("/load-van");
+                break;
+            case "Refuel Van":
+                navigate("/refuel-van");
+                break; 
+            case "Drive Van":
+                navigate("/drive-van");
+                break;   
+            case "Remove Van":
+                navigate("/remove-van");
+                break;           
                 
                 
             // Add similar cases for other menu options here
