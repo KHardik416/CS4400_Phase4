@@ -42,7 +42,7 @@ const AddProduct = () => {
           <label>
             name
             <input
-              type="name" 
+              type="text" 
               name="name"
               value={formData.name}
               onChange={handleChange}
