@@ -19,9 +19,36 @@ const AddVan = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Van Data Submitted:", formData);
+    console.log(formData);
+    try {
+      const response = await fetch("http://localhost:3030/add_van", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ip_id: formData.ID,
+          ip_tag: formData.tag,
+          ip_fuel: formData.fuel,
+          ip_capacity: formData.capacity,
+          ip_sales: formData.sales,
+          ip_driven_by: formData.driver,
+        }),
+      });
+
+      if (response.ok) {
+        alert("Van added successfully!");
+        navigate("/");
+      } else {
+        const errorMessage = await response.text();
+        alert(`Error: ${errorMessage}`);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   const handleCancel = () => {

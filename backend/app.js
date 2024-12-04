@@ -263,7 +263,7 @@ app.post("/add_van", (req, res) => {
     ip_fuel,
     ip_capacity,
     ip_sales,
-    ip_driven_by = "null",
+    ip_driven_by,
   } = req.body;
 
   if (!ip_id || !ip_tag || !ip_fuel || !ip_capacity || !ip_sales) {
@@ -304,7 +304,7 @@ app.post("/add_business", (req, res) => {
 });
 
 app.post("/add_service", (req, res) => {
-  const { ip_id, ip_long_name, ip_home_base, ip_manager = "null" } = req.body;
+  const { ip_id, ip_long_name, ip_home_base, ip_manager = null } = req.body;
 
   if (!ip_long_name || !ip_id || !ip_home_base) {
     res.status(400).send("All fields except Manager is required!");
@@ -324,7 +324,7 @@ app.post("/add_service", (req, res) => {
 });
 
 app.post("/add_location", (req, res) => {
-  const { ip_label, ip_x_coord, ip_y_coord, ip_space = "null" } = req.body;
+  const { ip_label, ip_x_coord, ip_y_coord, ip_space = null } = req.body;
 
   if (!ip_label || !ip_x_coord || !ip_y_coord) {
     res.status(400).send("All fields except Space is required!");
@@ -372,7 +372,7 @@ app.get("/get_businesses", (req, res) => {
 
 
 app.post("/start_funding", (req, res) => {
-  const { ip_owner, ip_amount = "null", ip_long_name, ip_fund_date } = req.body;
+  const { ip_owner, ip_amount = null, ip_long_name, ip_fund_date } = req.body;
   if (!ip_owner || !ip_long_name || !ip_fund_date) {
     res.status(400).send("Need to fill in all the fields except amount");
   }
@@ -510,7 +510,7 @@ app.put("/manage_service", (req, res) => {
 });
 
 app.put("/takeover_van", (req, res) => {
-  const { ip_username = "null", ip_id, ip_tag } = req.body;
+  const { ip_username = null, ip_id, ip_tag } = req.body;
 
   if (!ip_username || !ip_id) {
     return res.status(400).send("Username and ID are required!");
