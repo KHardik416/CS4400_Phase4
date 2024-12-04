@@ -23,7 +23,7 @@ const RemoveProduct = () => {
         }
 
         const [productsData] = await Promise.all([
-          productsResponse.json(),,
+          productsResponse.json()
         ]);
 
         setProducts(productsData);
