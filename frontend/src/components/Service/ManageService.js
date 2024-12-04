@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Global.css"; 
+import "../Global.css";
 
 const ManageService = () => {
   const [formData, setFormData] = useState({
@@ -15,9 +15,31 @@ const ManageService = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Service Data Submitted:", formData);
+    try {
+      const response = await fetch("http://localhost:3030/manage_service", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ip_username: formData.username,
+          ip_id: formData.ID,
+        }),
+      });
+
+      if (response.ok) {
+        alert("Managed service successfully!");
+        navigate("/");
+      } else {
+        const errorMessage = await response.text();
+        alert(`Error: ${errorMessage}`);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   const handleCancel = () => {
@@ -41,7 +63,7 @@ const ManageService = () => {
           <label>
             ID
             <input
-              type="text" 
+              type="text"
               name="ID"
               value={formData.ID}
               onChange={handleChange}
