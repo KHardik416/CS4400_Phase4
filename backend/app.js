@@ -579,6 +579,35 @@ app.put("/drive_van", (req, res) => {
   });
 });
 
+
+app.get("/get_products", (req, res) => {
+  const query = "SELECT barcode FROM products";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching products: ", err);
+      return res.status(500).send("Error fetching products.");
+    }
+    const product_barcodes = results.map((row) => row.barcode);
+    res.status(200).json(product_barcodes);
+  });
+});
+
+// Get all vans
+app.get("/get_vans", (req, res) => {
+  const query = "SELECT id FROM vans";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching vans: ", err);
+      return res.status(500).send("Error fetching vans.");
+    }
+    const vanIDs = results.map((row) => row.id);
+    res.status(200).json(vanIDs);
+  });
+});
+
+// Purchase a product
 app.put("/purchase_product", (req, res) => {
   const { ip_long_name, ip_id, ip_tag, ip_barcode, ip_quantity } = req.body;
 
@@ -586,16 +615,15 @@ app.put("/purchase_product", (req, res) => {
     return res.status(400).send("All fields are required!");
   }
 
-  const query = "Call purchase_product(?, ?, ?, ?, ?)";
-  params = [ip_long_name, ip_id, ip_tag, ip_barcode, ip_quantity];
+  const query = "CALL purchase_product(?, ?, ?, ?, ?)";
+  const params = [ip_long_name, ip_id, ip_tag, ip_barcode, ip_quantity];
 
   db.query(query, params, (err, results) => {
     if (err) {
       console.error("Error executing procedure:", err);
       return res.status(500).send("Error purchasing the product.");
-    } else {
-      res.status(200).send("Successfully purchased the product.");
     }
+    res.status(200).send("Successfully purchased the product.");
   });
 });
 
