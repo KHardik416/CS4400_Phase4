@@ -343,6 +343,34 @@ app.post("/add_location", (req, res) => {
   });
 });
 
+app.get("/get_owners", (req, res) => {
+  const query = "SELECT username FROM business_owners";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.log("Error fetching owners: ", err);
+      res.status(500).send("Error fetching owners.");
+    } else {
+      const usernames = results.map((row) => row.username);
+      res.status(200).json(usernames);
+    }
+  });
+});
+
+app.get("/get_businesses", (req, res) => {
+  const query = "select long_name from businesses";
+  db.query(query, (err, results) => {
+    if (err) {
+      console.log("Error fetching businesses: ", err);
+      res.status(500).send("Error fetching businesses.");
+    } else {
+      const businessNames = results.map((row) => row.long_name);
+      res.status(200).json(businessNames);
+    }
+  });
+});
+
+
 app.post("/start_funding", (req, res) => {
   const { ip_owner, ip_amount = "null", ip_long_name, ip_fund_date } = req.body;
   if (!ip_owner || !ip_long_name || !ip_fund_date) {
