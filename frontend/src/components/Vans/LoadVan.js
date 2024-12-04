@@ -18,9 +18,35 @@ const LoadVan = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Van Data Submitted:", formData);
+    console.log(formData);
+    try {
+      const response = await fetch("http://localhost:3030/load_van", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ip_id: formData.ID,
+          ip_tag: formData.tag,
+          ip_barcode: formData.barcode,
+          ip_num_packages: formData.num_packages,
+          ip_price: formData.price,
+        }),
+      });
+
+      if (response.ok) {
+        alert("Van loaded successfully!");
+        navigate("/");
+      } else {
+        const errorMessage = await response.text();
+        alert(`Error: ${errorMessage}`);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   const handleCancel = () => {
@@ -29,7 +55,7 @@ const LoadVan = () => {
 
   return (
     <div className="container">
-      <h2>Add Van</h2>
+      <h2>Load Van</h2>
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>

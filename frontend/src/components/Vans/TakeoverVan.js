@@ -16,9 +16,33 @@ const TakeoverVan = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Van Data Submitted:", formData);
+    console.log(formData);
+    try {
+      const response = await fetch("http://localhost:3030/takeover_van", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ip_username: formData.new_driver,
+          ip_id: formData.ID,
+          ip_tag: formData.tag,
+        }),
+      });
+
+      if (response.ok) {
+        alert("Van taken over successfully!");
+        navigate("/");
+      } else {
+        const errorMessage = await response.text();
+        alert(`Error: ${errorMessage}`);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   const handleCancel = () => {
