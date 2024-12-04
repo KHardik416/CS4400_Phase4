@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Views.css"; // Import the new CSS file
 
 const EmployeeView = () => {
   const [employees, setEmployees] = useState([]);
@@ -28,7 +29,7 @@ const EmployeeView = () => {
   };
 
   return (
-    <div>
+    <div className="view-container">
       <div>
         <button
           type="button"
@@ -39,27 +40,24 @@ const EmployeeView = () => {
         </button>
       </div>
 
-      <h1>View: Employee</h1>
+      <h1>View: Employees</h1>
 
       {/* Error Message */}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {/* Employee Table */}
       {employees.length > 0 ? (
-        <table
-          border="1"
-          style={{ width: "100%", textAlign: "left", marginTop: "20px" }}
-        >
+        <table className="view-table">
           <thead>
             <tr>
-              <th>username</th>
-              <th>taxID</th>
-              <th>salary</th>
-              <th>hired</th>
-              <th>experience</th>
-              <th>licenseID</th>
-              <th>driving_experience</th>
-              <th>manager_status</th>
+              <th>Username</th>
+              <th>Tax ID</th>
+              <th>Salary</th>
+              <th>Hired</th>
+              <th>Experience</th>
+              <th>License ID</th>
+              <th>Driving Experience</th>
+              <th>Manager Status</th>
             </tr>
           </thead>
           <tbody>

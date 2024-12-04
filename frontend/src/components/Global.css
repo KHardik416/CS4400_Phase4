@@ -117,7 +117,7 @@ select:focus {
   position: relative;
   color: #f3f3f3;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 0.5 * var(--m);
+  font-size: calc(0.5 * var(--m));
   font-weight: bold;
   border-radius: calc(0.7 * var(--m));
   padding: calc(0.5 * var(--m)) calc(1 * var(--m));
@@ -193,6 +193,7 @@ select:focus {
 .add-button:hover::after {
   opacity: 1;
 }
+
 @keyframes animate {
   0% {
     background-position: 0;
