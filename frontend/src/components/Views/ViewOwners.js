@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const OwnerView = () => {
   const [owners, setOwners] = useState([]);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOwners = async () => {
@@ -20,8 +23,22 @@ const OwnerView = () => {
     fetchOwners();
   }, []); // Empty dependency array ensures this runs only once on mount
 
+  const handleCancel = () => {
+    navigate("/");
+  };
+
   return (
     <div>
+      <div>
+        <button
+          type="button"
+          onClick={handleCancel}
+          className="cancel-button button-pos"
+        >
+          Back to Home
+        </button>
+      </div>
+
       <h1>View: Owners</h1>
 
       {/* Error Message */}
@@ -29,7 +46,10 @@ const OwnerView = () => {
 
       {/* Owner Table */}
       {owners.length > 0 ? (
-        <table border="1" style={{ width: "100%", textAlign: "left", marginTop: "20px" }}>
+        <table
+          border="1"
+          style={{ width: "100%", textAlign: "left", marginTop: "20px" }}
+        >
           <thead>
             <tr>
               <th>username</th>

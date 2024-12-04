@@ -2,53 +2,53 @@
 
 /* Root Variables for Scaling and Colors */
 :root {
-    --m: 1.5rem;
-    /* Base scaling unit for animations and buttons */
-    --red: #FF6565;
-    --pink: #FF64F9;
-    --purple: #6B5FFF;
-    --blue: #4D8AFF;
-    --green: #5BFF89;
-    --yellow: #FFEE55;
-    --orange: #FF6D1B;
+  --m: 1.5rem;
+  /* Base scaling unit for animations and buttons */
+  --red: #ff6565;
+  --pink: #ff64f9;
+  --purple: #6b5fff;
+  --blue: #4d8aff;
+  --green: #5bff89;
+  --yellow: #ffee55;
+  --orange: #ff6d1b;
 }
 
 /* Body Styling */
 body {
-    background-color: #141516;
-    font-family: 'Space Grotesk', sans-serif;
-    color: #f3f3f3;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  background-color: #141516;
+  font-family: "Space Grotesk", sans-serif;
+  color: #f3f3f3;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 /* Container for Forms */
 .container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #1e1f21;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    color: #f3f3f3;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #1e1f21;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  color: #f3f3f3;
 }
 
 /* Form Styling */
 .form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 .form label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 /* Unified Input Styling */
@@ -59,16 +59,16 @@ input[type="number"],
 input[type="date"],
 textarea,
 select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #2c2c2f;
-    color: #fff;
-    font-size: 1rem;
-    font-family: 'Space Grotesk', sans-serif;
-    box-sizing: border-box;
-    transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #2c2c2f;
+  color: #fff;
+  font-size: 1rem;
+  font-family: "Space Grotesk", sans-serif;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input[type="text"]:focus,
@@ -78,86 +78,113 @@ input[type="number"]:focus,
 input[type="date"]:focus,
 textarea:focus,
 select:focus {
-    outline: none;
-    border-color: var(--blue);
-    box-shadow: 0 0 5px var(--blue);
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 5px var(--blue);
 }
 
 /* Actions Section */
 .actions {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .cancel-button {
-    padding: 10px 20px;
-    background: #ccc;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    color: #333;
-    transition: background 0.3s;
+  padding: 10px 20px;
+  background: #ccc;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #333;
+  transition: background 0.3s;
 }
 
 .cancel-button:hover {
-    background: #888;
-    color: #fff;
+  background: #888;
+  color: #fff;
+}
+
+.button-pos {
+  position: absolute;
+  top: 7vh;
+  right: 7vw;
 }
 
 /* Add Button with Vibrant Animation */
 .add-button {
-    border: calc(0.08 * var(--m)) solid transparent;
-    position: relative;
-    color: #F3F3F3;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.5 * var(--m);
-    font-weight: bold;
-    border-radius: calc(0.7 * var(--m));
-    padding: calc(0.5 * var(--m)) calc(1 * var(--m));
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
+  border: calc(0.08 * var(--m)) solid transparent;
+  position: relative;
+  color: #f3f3f3;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.5 * var(--m);
+  font-weight: bold;
+  border-radius: calc(0.7 * var(--m));
+  padding: calc(0.5 * var(--m)) calc(1 * var(--m));
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
 
-    background: linear-gradient(#121213, #121213),
-        linear-gradient(#121213 50%, rgba(18, 18, 19, 0.6) 80%, rgba(18, 18, 19, 0)),
-        linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
-    background-origin: border-box;
-    background-clip: padding-box, border-box, border-box;
-    background-size: 200%;
-    animation: animate 2s infinite linear;
+  background: linear-gradient(#121213, #121213),
+    linear-gradient(#121213 50%, rgba(18, 18, 19, 0.6) 80%, rgba(18, 18, 19, 0)),
+    linear-gradient(
+      90deg,
+      var(--orange),
+      var(--yellow),
+      var(--green),
+      var(--blue),
+      var(--purple),
+      var(--pink),
+      var(--red)
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box, border-box;
+  background-size: 200%;
+  animation: animate 2s infinite linear;
 }
 
 .add-button::before {
-    content: '';
-    background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
-    height: 30%;
-    width: 60%;
-    position: absolute;
-    bottom: -20%;
-    z-index: -0.99;
-    background-size: 200%;
-    animation: animate 2s infinite linear;
-    filter: blur(calc(0.8 * var(--m)));
+  content: "";
+  background: linear-gradient(
+    90deg,
+    var(--orange),
+    var(--yellow),
+    var(--green),
+    var(--blue),
+    var(--purple),
+    var(--pink),
+    var(--red)
+  );
+  height: 30%;
+  width: 60%;
+  position: absolute;
+  bottom: -20%;
+  z-index: -0.99;
+  background-size: 200%;
+  animation: animate 2s infinite linear;
+  filter: blur(calc(0.8 * var(--m)));
 }
-
 
 .add-button:hover,
 .add-button:hover::before {
-    color: #70aae0;
-    animation: animate 0.5s infinite linear;
+  color: #70aae0;
+  animation: animate 0.5s infinite linear;
 }
 
 /* Added ::after pseudo-element */
 .add-button::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   border-radius: calc(0.7 * var(--m));
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 50%
+  );
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -167,46 +194,46 @@ select:focus {
   opacity: 1;
 }
 @keyframes animate {
-    0% {
-        background-position: 0;
-    }
+  0% {
+    background-position: 0;
+  }
 
-    100% {
-        background-position: 200%;
-    }
+  100% {
+    background-position: 200%;
+  }
 }
 
 /* Heading Styles */
 h1,
 h2,
 h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    text-align: center;
-    color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+  text-align: center;
+  color: #fff;
 }
 
 h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
+  font-size: 3rem;
+  margin-bottom: 20px;
 }
 
 h2 {
-    font-size: 2rem;
-    margin-bottom: 15px;
+  font-size: 2rem;
+  margin-bottom: 15px;
 }
 
 /* Responsive Scaling */
 @media screen and (max-width: 1000px) {
-    :root {
-        --m: 2rem;
-        /* Scale down for smaller screens */
-    }
+  :root {
+    --m: 2rem;
+    /* Scale down for smaller screens */
+  }
 
-    h1 {
-        font-size: 2.5rem;
-    }
+  h1 {
+    font-size: 2.5rem;
+  }
 
-    h2 {
-        font-size: 1.8rem;
-    }
+  h2 {
+    font-size: 1.8rem;
+  }
 }
