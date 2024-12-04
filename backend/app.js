@@ -447,7 +447,7 @@ app.delete("/remove_driver", (req, res) => {
     res.status(400).send("Username is required!");
   }
 
-  const query = "Call remove_product(?)";
+  const query = "Call remove_driver_role(?)";
   const params = [ip_username];
 
   db.query(query, params, (err, results) => {
