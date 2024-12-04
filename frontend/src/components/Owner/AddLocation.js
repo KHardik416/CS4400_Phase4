@@ -17,9 +17,34 @@ const AddLocation = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Location Data Submitted:", formData);
+    console.log(formData);
+    try {
+      const response = await fetch("http://localhost:3030/add_location", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ip_label: formData.label,
+          ip_x_coord: formData.x_coord,
+          ip_y_coord: formData.y_coord,
+          ip_space: formData.space,
+        }),
+      });
+
+      if (response.ok) {
+        alert("Location added successfully!");
+        navigate("/");
+      } else {
+        const errorMessage = await response.text();
+        alert(`Error: ${errorMessage}`);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   const handleCancel = () => {
@@ -41,7 +66,7 @@ const AddLocation = () => {
             />
           </label>
           <label>
-            rating
+            x_coord
             <input
               type="number" 
               name="x_coord"
@@ -50,7 +75,7 @@ const AddLocation = () => {
             />
           </label>
           <label>
-            spent
+            y_coord
             <input
               type="number"
               name="y_coord"
@@ -59,7 +84,7 @@ const AddLocation = () => {
             />
           </label>
           <label>
-            location
+            space
             <input
               type="number"
               name="space"
