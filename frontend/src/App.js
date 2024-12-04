@@ -21,6 +21,13 @@ import ManageService from "./components/Service/ManageService";
 import AddProduct from "./components/Product/AddProduct";
 import PurchaseProduct from "./components/Product/PurchaseProduct";
 import RemoveProduct from "./components/Product/RemoveProduct";
+import EmployeeView from "./components/Views/ViewEmployee";
+import OwnerView from "./components/Views/ViewOwners";
+import DriverView from "./components/Views/ViewDrivers";
+import LocationView from "./components/Views/ViewLocations";
+import ProductView from "./components/Views/ViewProducts";
+import ServiceView from "./components/Views/ViewServices";
+
 
 function App() {
   return (
@@ -47,6 +54,15 @@ function App() {
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/purchase-product" element={<PurchaseProduct />} />
         <Route path="/remove-product" element={<RemoveProduct />} />
+        <Route path="/employee-view" element={<EmployeeView />} />
+        <Route path="/owner-view" element={<OwnerView />} />
+        <Route path="/driver-view" element={<DriverView />} />
+        <Route path="/location-view" element={<LocationView />} />
+        <Route path="/product-view" element={<ProductView />} />
+        <Route path="/service-view" element={<ServiceView />} />
+
+
+
       </Routes>
     </Router>
   );

@@ -72,9 +72,25 @@ const Dashboard = () => {
             case "Remove Product":
                 navigate("/remove-product");
                 break;             
-                
-                
-            // Add similar cases for other menu options here
+                case "View Employees":
+                  navigate("/employee-view");
+                  break;   
+            case "View Owners":
+                  navigate("/owner-view");
+                  break;             
+            case "View Drivers":
+                  navigate("/driver-view");
+                  break;             
+            case "View Locations":
+                  navigate("/location-view");
+                  break;             
+            case "View Products":
+                  navigate("/product-view");
+                  break;             
+            case "View Services":
+                  navigate("/service-view");
+                  break;             
+              // Add similar cases for other menu options here
             default:
                 console.log(`No route defined for: ${option}`);
         }
