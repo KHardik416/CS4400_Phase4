@@ -21,6 +21,7 @@ import ManageService from "./components/Service/ManageService";
 import AddProduct from "./components/Product/AddProduct";
 import PurchaseProduct from "./components/Product/PurchaseProduct";
 import RemoveProduct from "./components/Product/RemoveProduct";
+import EmployeeView from"./components/Views/ViewEmployee";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/purchase-product" element={<PurchaseProduct />} />
         <Route path="/remove-product" element={<RemoveProduct />} />
+        <Route path="/view-employee" element={<EmployeeView />} />
       </Routes>
     </Router>
   );

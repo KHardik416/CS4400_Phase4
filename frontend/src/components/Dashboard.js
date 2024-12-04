@@ -72,7 +72,10 @@ const Dashboard = () => {
             case "Remove Product":
                 navigate("/remove-product");
                 break;             
-                
+                case "View Employees":
+                  navigate("/view-employee");
+                  break;             
+  
                 
             // Add similar cases for other menu options here
             default:
