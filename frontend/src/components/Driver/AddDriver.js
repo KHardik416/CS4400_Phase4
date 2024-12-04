@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Global.css"; 
+import "../Global.css";
 
 const AddDriver = () => {
   const [formData, setFormData] = useState({
     username: "",
-    first_name: "",
     licenseID: "",
     experience: "",
     license_type: "",
@@ -18,9 +17,33 @@ const AddDriver = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Driver Data Submitted:", formData);
+    try {
+      const response = await fetch("http://localhost:3030/add_driver", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ip_username: formData.username,
+          ip_licenseID: formData.licenseID,
+          ip_license_type: formData.license_type,
+          ip_driver_experience: formData.experience,
+        }),
+      });
+
+      if (response.ok) {
+        alert("Driver added successfully!");
+        navigate("/");
+      } else {
+        const errorMessage = await response.text();
+        alert(`Error: ${errorMessage}`);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   const handleCancel = () => {
@@ -44,7 +67,7 @@ const AddDriver = () => {
           <label>
             licenseID
             <input
-              type="number" 
+              type="number"
               name="licenseID"
               value={formData.licenseID}
               onChange={handleChange}
