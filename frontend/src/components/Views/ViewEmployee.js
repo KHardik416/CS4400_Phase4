@@ -66,7 +66,7 @@ const EmployeeView = () => {
                 <td>{employee.username}</td>
                 <td>{employee.taxID}</td>
                 <td>{employee.salary}</td>
-                <td>{employee.hired}</td>
+                <td>{employee.hired.split('T')[0]}</td>
                 <td>{employee.experience}</td>
                 <td>{employee.licenseID || "N/A"}</td>
                 <td>{employee.driving_experience || "0"}</td>
