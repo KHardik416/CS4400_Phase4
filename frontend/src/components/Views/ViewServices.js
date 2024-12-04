@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Views.css"; // Import the new CSS file
 
 const ServiceView = () => {
   const [services, setServices] = useState([]);
@@ -28,7 +29,7 @@ const ServiceView = () => {
   };
 
   return (
-    <div>
+    <div className="view-container">
       <div>
         <button
           type="button"
@@ -46,10 +47,7 @@ const ServiceView = () => {
 
       {/* Service Table */}
       {services.length > 0 ? (
-        <table
-          border="1"
-          style={{ width: "100%", textAlign: "left", marginTop: "20px" }}
-        >
+        <table className="view-table">
           <thead>
             <tr>
               <th>id</th>
