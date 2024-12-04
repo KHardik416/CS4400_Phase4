@@ -523,13 +523,13 @@ app.put("/takeover_van", (req, res) => {
 });
 
 app.put("/load_van", (req, res) => {
-  const { ip_id, ip_tag, ip_barcode, ip_more_packages, ip_price } = req.body;
-  if (!ip_id || !ip_tag || !ip_barcode || !ip_more_packages || !ip_price) {
+  const { ip_id, ip_tag, ip_barcode, ip_num_packages, ip_price } = req.body;
+  if (!ip_id || !ip_tag || !ip_barcode || !ip_num_packages || !ip_price) {
     return res.status(400).send("All fields are required!");
   }
 
   const query = "Call load_van(?, ?, ?, ?, ?)";
-  params = [ip_id, ip_tag, ip_barcode, ip_more_packages, ip_price];
+  params = [ip_id, ip_tag, ip_barcode, ip_num_packages, ip_price];
 
   db.query(query, params, (err, results) => {
     if (err) {
@@ -561,13 +561,13 @@ app.put("/refuel_van", (req, res) => {
 });
 
 app.put("/drive_van", (req, res) => {
-  const { ip_departure, ip_arrival } = req.body;
-  if (!ip_departure || !ip_arrival) {
+  const { ip_id, ip_tag, ip_destination } = req.body;
+  if (!ip_id || !ip_tag || !ip_destination) {
     return res.status(400).send("All fields are required!");
   }
 
-  const query = "Call drive_van(?, ?)";
-  params = [ip_departure, ip_arrival];
+  const query = "Call drive_van(?, ?, ?)";
+  params = [ip_id, ip_tag, ip_destination];
 
   db.query(query, params, (err, results) => {
     if (err) {
