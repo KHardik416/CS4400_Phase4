@@ -42,7 +42,8 @@ body {
 .form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 20px;
+  padding: 15px;
 }
 
 .form label {
@@ -88,6 +89,7 @@ select:focus {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
+  padding-bottom: 5px;
 }
 
 .cancel-button {
@@ -103,12 +105,6 @@ select:focus {
 .cancel-button:hover {
   background: #888;
   color: #fff;
-}
-
-.button-pos {
-  position: absolute;
-  top: 7vh;
-  right: 7vw;
 }
 
 /* Add Button with Vibrant Animation */
