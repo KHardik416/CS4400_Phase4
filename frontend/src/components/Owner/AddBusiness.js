@@ -57,7 +57,7 @@ const AddBusiness = () => {
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
-            name
+            Business Name
             <input
               type="text"
               name="name"
@@ -66,7 +66,7 @@ const AddBusiness = () => {
             />
           </label>
           <label>
-            rating
+            Rating
             <input
               type="number" 
               name="rating"
@@ -75,7 +75,7 @@ const AddBusiness = () => {
             />
           </label>
           <label>
-            spent
+            Amount Spent
             <input
               type="number"
               name="spent"
@@ -84,7 +84,7 @@ const AddBusiness = () => {
             />
           </label>
           <label>
-            location
+            Location
             <input
               type="text"
               name="location"

@@ -55,7 +55,7 @@ const AddProduct = () => {
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
-            barcode
+            Product Barcode
             <input
               type="text"
               name="barcode"
@@ -64,7 +64,7 @@ const AddProduct = () => {
             />
           </label>
           <label>
-            name
+            Name
             <input
               type="text" 
               name="name"
@@ -73,7 +73,7 @@ const AddProduct = () => {
             />
           </label>
           <label>
-            weight
+            Weight
             <input
               type="number"
               name="weight"

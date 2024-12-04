@@ -53,7 +53,7 @@ const HireEmployee = () => {
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
-            username
+            Username
             <input
               type="text"
               name="username"
@@ -62,7 +62,7 @@ const HireEmployee = () => {
             />
           </label>
           <label>
-            businessID
+            Business ID
             <input
               type="text"
               name="businessID"

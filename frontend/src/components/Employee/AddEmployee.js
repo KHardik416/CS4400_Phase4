@@ -24,6 +24,7 @@ const AddEmployee = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData);
     try {
       const response = await fetch("http://localhost:3030/add_employee", {
         method: "POST",
@@ -66,7 +67,7 @@ const AddEmployee = () => {
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
-            username
+            Username
             <input
               type="text"
               name="username"
@@ -75,7 +76,7 @@ const AddEmployee = () => {
             />
           </label>
           <label>
-            birthdate
+            Birthdate
             <input
               type="date"
               name="birthdate"
@@ -84,7 +85,7 @@ const AddEmployee = () => {
             />
           </label>
           <label>
-            first_name
+            First Name
             <input
               type="text"
               name="first_name"
@@ -93,16 +94,7 @@ const AddEmployee = () => {
             />
           </label>
           <label>
-            salary
-            <input
-              type="number"
-              name="salary"
-              value={formData.salary}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            last_name
+            Last Name
             <input
               type="text"
               name="last_name"
@@ -111,7 +103,17 @@ const AddEmployee = () => {
             />
           </label>
           <label>
-            experience
+            Salary
+            <input
+              type="number"
+              name="salary"
+              value={formData.salary}
+              onChange={handleChange}
+            />
+          </label>
+          
+          <label>
+            Experience
             <input
               type="number"
               name="experience"
@@ -120,7 +122,7 @@ const AddEmployee = () => {
             />
           </label>
           <label>
-            address
+            Address
             <input
               type="text"
               name="address"
@@ -129,7 +131,7 @@ const AddEmployee = () => {
             />
           </label>
           <label>
-            taxID
+            Tax ID
             <input
               type="text"
               name="taxID"
@@ -138,7 +140,7 @@ const AddEmployee = () => {
             />
           </label>
           <label>
-            hired_date
+            Hired Date
             <input
               type="date"
               name="hired_date"

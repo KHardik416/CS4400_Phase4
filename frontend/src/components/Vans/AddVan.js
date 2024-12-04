@@ -62,7 +62,7 @@ const AddVan = () => {
         <div className="form">
           <label>
         {/* Change to drop down based on database service ID*/}
-            ID
+            Delivery Service ID
             <input
               type="text"
               name="ID"
@@ -71,7 +71,7 @@ const AddVan = () => {
             />
           </label>
           <label>
-            tag
+            Van Tag
             <input
               type="number" 
               name="tag"
@@ -80,7 +80,7 @@ const AddVan = () => {
             />
           </label>
           <label>
-            fuel
+            Fuel
             <input
               type="number"
               name="fuel"
@@ -89,7 +89,7 @@ const AddVan = () => {
             />
           </label>
           <label>
-            capacity
+            Capacity
             <input
               type="number"
               name="capacity"
@@ -98,7 +98,7 @@ const AddVan = () => {
             />
           </label>
           <label>
-            sales
+            Sales
             <input
               type="number"
               name="sales"
@@ -108,7 +108,7 @@ const AddVan = () => {
           </label>
           <label>
             {/* Change to drop down based on database driver license ID*/}
-            driver
+            Driver
             <input
               type="text"
               name="driver"

@@ -84,7 +84,7 @@ const RemoveProduct = () => {
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
-            Barcode
+            Product Barcode
             <select
               name="barcode"
               value={formData.barcode}

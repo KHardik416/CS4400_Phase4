@@ -54,7 +54,7 @@ const RemoveVan = () => {
         <div className="form">
           <label>
         {/* Change to drop down based on database service ID*/}
-            ID
+            Delivery Service ID
             <input
               type="text"
               name="ID"
@@ -63,7 +63,7 @@ const RemoveVan = () => {
             />
           </label>
           <label>
-            tag
+            Van Tag
             <input
               type="number" 
               name="tag"

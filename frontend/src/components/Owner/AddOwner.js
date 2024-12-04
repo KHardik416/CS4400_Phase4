@@ -59,7 +59,7 @@ const AddOwner = () => {
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
-            username
+            Username
             <input
               type="text"
               name="username"
@@ -68,7 +68,7 @@ const AddOwner = () => {
             />
           </label>
           <label>
-            birthdate
+            Birthdate
             <input
               type="date" 
               name="birthdate"
@@ -77,7 +77,7 @@ const AddOwner = () => {
             />
           </label>
           <label>
-            first_name
+            First Name
             <input
               type="text"
               name="first_name"
@@ -86,7 +86,7 @@ const AddOwner = () => {
             />
           </label>
           <label>
-            last_name
+            Last Name
             <input
               type="text"
               name="last_name"
@@ -95,7 +95,7 @@ const AddOwner = () => {
             />
           </label>
           <label>
-            address
+            Address
             <input
               type="text"
               name="address"

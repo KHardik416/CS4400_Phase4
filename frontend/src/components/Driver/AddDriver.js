@@ -56,7 +56,7 @@ const AddDriver = () => {
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
-            username
+            Username
             <input
               type="text"
               name="username"
@@ -65,7 +65,7 @@ const AddDriver = () => {
             />
           </label>
           <label>
-            licenseID
+            License ID
             <input
               type="number"
               name="licenseID"
@@ -74,7 +74,7 @@ const AddDriver = () => {
             />
           </label>
           <label>
-            experience
+            Experience
             <input
               type="number"
               name="experience"
@@ -83,7 +83,7 @@ const AddDriver = () => {
             />
           </label>
           <label>
-            license_type
+            License Type
             <input
               type="text"
               name="license_type"

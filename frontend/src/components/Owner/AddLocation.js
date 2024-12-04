@@ -57,7 +57,7 @@ const AddLocation = () => {
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
-            name
+            Name
             <input
               type="text"
               name="label"
@@ -66,7 +66,7 @@ const AddLocation = () => {
             />
           </label>
           <label>
-            x_coord
+            X Coordinate
             <input
               type="number" 
               name="x_coord"
@@ -75,7 +75,7 @@ const AddLocation = () => {
             />
           </label>
           <label>
-            y_coord
+            Y Coordinate
             <input
               type="number"
               name="y_coord"
@@ -84,7 +84,7 @@ const AddLocation = () => {
             />
           </label>
           <label>
-            space
+            Space
             <input
               type="number"
               name="space"

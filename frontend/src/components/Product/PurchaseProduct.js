@@ -139,7 +139,7 @@ const PurchaseProduct = () => {
             />
           </label>
           <label>
-            Barcode
+            Product Barcode
             <select
               name="barcode"
               value={formData.barcode}

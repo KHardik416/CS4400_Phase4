@@ -53,7 +53,7 @@ const handleSubmit = async (e) => {
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
-            username
+            Username
             <input
               type="text"
               name="username"
@@ -62,7 +62,7 @@ const handleSubmit = async (e) => {
             />
           </label>
           <label>
-            ID
+            Delivery Service ID
             <input
               type="text" 
               name="ID"

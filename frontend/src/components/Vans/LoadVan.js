@@ -60,7 +60,7 @@ const LoadVan = () => {
         <div className="form">
           <label>
         {/* Change to drop down based on database service ID*/}
-            ID
+            Delivery Service ID
             <input
               type="text"
               name="ID"
@@ -69,7 +69,7 @@ const LoadVan = () => {
             />
           </label>
           <label>
-            tag
+            Van Tag
             <input
               type="number" 
               name="tag"
@@ -79,7 +79,7 @@ const LoadVan = () => {
           </label>
           <label>
             {/* Change to drop down based on database product barcode*/}
-            barcode
+            Product Barcode
             <input
               type="text"
               name="barcode"
@@ -88,7 +88,7 @@ const LoadVan = () => {
             />
           </label>
           <label>
-            num. packages
+            Number of Packages
             <input
               type="number"
               name="num_packages"
@@ -97,7 +97,7 @@ const LoadVan = () => {
             />
           </label>
           <label>
-            price
+            Price
             <input
               type="number"
               name="price"

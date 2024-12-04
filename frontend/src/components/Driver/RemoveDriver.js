@@ -51,7 +51,7 @@ const RemoveDriver = () => {
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
-            username
+            Username
             {/*Get driver username from database dropdown USER USERNAME */}
             <input
               type="text"

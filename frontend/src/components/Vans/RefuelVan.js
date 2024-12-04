@@ -56,7 +56,7 @@ const RefuelVan = () => {
         <div className="form">
           <label>
         {/* Change to drop down based on database service ID*/}
-            ID
+            Delivery Service ID
             <input
               type="text"
               name="ID"
@@ -65,7 +65,7 @@ const RefuelVan = () => {
             />
           </label>
           <label>
-            tag
+            Van Tag
             <input
               type="number" 
               name="tag"
@@ -74,7 +74,7 @@ const RefuelVan = () => {
             />
           </label>
           <label>
-            new fuel
+            Fuel Added
             <input
               type="number"
               name="more_fuel"

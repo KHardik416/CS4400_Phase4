@@ -57,7 +57,7 @@ const AddService = () => {
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
-            ID
+            Delivery Service ID
             <input
               type="text"
               name="ID"
@@ -66,7 +66,7 @@ const AddService = () => {
             />
           </label>
           <label>
-            name
+            Name
             <input
               type="text" 
               name="name"
@@ -75,7 +75,7 @@ const AddService = () => {
             />
           </label>
           <label>
-            home base
+            Home Base
             <input
               type="text"
               name="home_base"
@@ -84,7 +84,7 @@ const AddService = () => {
             />
           </label>
           <label>
-            manager
+            Manager
             <input
               type="text"
               name="manager"
