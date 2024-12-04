@@ -595,7 +595,7 @@ app.get("/get_products", (req, res) => {
 
 // Get all vans
 app.get("/get_vans", (req, res) => {
-  const query = "SELECT id FROM vans";
+  const query = "SELECT DISTINCT id FROM vans";
 
   db.query(query, (err, results) => {
     if (err) {
