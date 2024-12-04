@@ -17,9 +17,34 @@ const AddService = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Service Data Submitted:", formData);
+    console.log(formData);
+    try {
+      const response = await fetch("http://localhost:3030/add_service", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ip_id: formData.ID,
+          ip_long_name: formData.name,
+          ip_home_base: formData.home_base,
+          ip_manager: formData.manager
+        }),
+      });
+
+      if (response.ok) {
+        alert("Service added successfully!");
+        navigate("/");
+      } else {
+        const errorMessage = await response.text();
+        alert(`Error: ${errorMessage}`);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   const handleCancel = () => {
