@@ -27,6 +27,60 @@ db.connect((err) => {
   console.log("Connected to MySQL");
 });
 
+// Information for dropdown
+app.get("/get_owners", (req, res) => {
+  const query = "SELECT username FROM business_owners";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.log("Error fetching owners: ", err);
+      res.status(500).send("Error fetching owners.");
+    } else {
+      const usernames = results.map((row) => row.username);
+      res.status(200).json(usernames);
+    }
+  });
+});
+
+app.get("/get_businesses", (req, res) => {
+  const query = "select long_name from businesses";
+  db.query(query, (err, results) => {
+    if (err) {
+      console.log("Error fetching businesses: ", err);
+      res.status(500).send("Error fetching businesses.");
+    } else {
+      const businessNames = results.map((row) => row.long_name);
+      res.status(200).json(businessNames);
+    }
+  });
+});
+
+app.get("/get_products", (req, res) => {
+  const query = "SELECT barcode FROM products";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching products: ", err);
+      return res.status(500).send("Error fetching products.");
+    }
+    const product_barcodes = results.map((row) => row.barcode);
+    res.status(200).json(product_barcodes);
+  });
+});
+
+app.get("/get_vans", (req, res) => {
+  const query = "SELECT DISTINCT id FROM vans";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching vans: ", err);
+      return res.status(500).send("Error fetching vans.");
+    }
+    const vanIDs = results.map((row) => row.id);
+    res.status(200).json(vanIDs);
+  });
+});
+
 // Getting Views
 app.get("/owner_view", (req, res) => {
   const query = "Select * from display_owner_view";
@@ -337,33 +391,6 @@ app.post("/add_location", (req, res) => {
   });
 });
 
-app.get("/get_owners", (req, res) => {
-  const query = "SELECT username FROM business_owners";
-
-  db.query(query, (err, results) => {
-    if (err) {
-      console.log("Error fetching owners: ", err);
-      res.status(500).send("Error fetching owners.");
-    } else {
-      const usernames = results.map((row) => row.username);
-      res.status(200).json(usernames);
-    }
-  });
-});
-
-app.get("/get_businesses", (req, res) => {
-  const query = "select long_name from businesses";
-  db.query(query, (err, results) => {
-    if (err) {
-      console.log("Error fetching businesses: ", err);
-      res.status(500).send("Error fetching businesses.");
-    } else {
-      const businessNames = results.map((row) => row.long_name);
-      res.status(200).json(businessNames);
-    }
-  });
-});
-
 app.post("/start_funding", (req, res) => {
   const { ip_owner, ip_amount, ip_long_name, ip_fund_date } = req.body;
   if (!ip_owner || !ip_long_name || !ip_fund_date) {
@@ -576,34 +603,6 @@ app.put("/drive_van", (req, res) => {
     } else {
       res.status(200).send("Successfully droving the van.");
     }
-  });
-});
-
-
-app.get("/get_products", (req, res) => {
-  const query = "SELECT barcode FROM products";
-
-  db.query(query, (err, results) => {
-    if (err) {
-      console.error("Error fetching products: ", err);
-      return res.status(500).send("Error fetching products.");
-    }
-    const product_barcodes = results.map((row) => row.barcode);
-    res.status(200).json(product_barcodes);
-  });
-});
-
-// Get all vans
-app.get("/get_vans", (req, res) => {
-  const query = "SELECT DISTINCT id FROM vans";
-
-  db.query(query, (err, results) => {
-    if (err) {
-      console.error("Error fetching vans: ", err);
-      return res.status(500).send("Error fetching vans.");
-    }
-    const vanIDs = results.map((row) => row.id);
-    res.status(200).json(vanIDs);
   });
 });
 
