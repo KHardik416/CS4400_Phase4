@@ -68,16 +68,30 @@ app.get("/get_products", (req, res) => {
   });
 });
 
-app.get("/get_vans", (req, res) => {
+app.get("/get_van_ids", (req, res) => {
   const query = "SELECT DISTINCT id FROM vans";
 
   db.query(query, (err, results) => {
     if (err) {
-      console.error("Error fetching vans: ", err);
-      return res.status(500).send("Error fetching vans.");
+      console.error("Error fetching van ids: ", err);
+      return res.status(500).send("Error fetching van ids.");
     }
     const vanIDs = results.map((row) => row.id);
     res.status(200).json(vanIDs);
+  });
+});
+
+app.get("/get_van_drivers", (req, res) => {
+  const query = "SELECT username FROM drivers";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.log("Error fetching van drivers: ", err);
+      return res.status(500).send("Error fetching van drivers.");
+    }
+
+    const drivers = results.map((row) => row.username);
+    return res.status(200).send(drivers);
   });
 });
 

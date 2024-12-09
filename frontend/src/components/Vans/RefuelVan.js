@@ -1,15 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Global.css"; 
+import "../Global.css";
 
 const RefuelVan = () => {
   const [formData, setFormData] = useState({
     ID: "",
     tag: "",
-    more_fuel: "",   
+    more_fuel: "",
   });
 
+  const [ids, setIds] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchIds = async () => {
+      try {
+        const vanIdResponse = await fetch("http://localhost:3030/get_van_ids");
+
+        if (!vanIdResponse.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const vanId = await vanIdResponse.json();
+
+        setIds(vanId);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        alert("Failed to load data. Please try again later.");
+        setIsLoading(false);
+      }
+    };
+
+    fetchIds();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,19 +80,21 @@ const RefuelVan = () => {
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
-        {/* Change to drop down based on database service ID*/}
+            {/* Change to drop down based on database service ID*/}
             Delivery Service ID
-            <input
-              type="text"
-              name="ID"
-              value={formData.ID}
-              onChange={handleChange}
-            />
+            <select name="ID" value={formData.ID} onChange={handleChange}>
+              <option value="">Select Van ID</option>
+              {ids.map((id, index) => (
+                <option key={index} value={id}>
+                  {id}
+                </option>
+              ))}
+            </select>
           </label>
           <label>
             Van Tag
             <input
-              type="number" 
+              type="number"
               name="tag"
               value={formData.tag}
               onChange={handleChange}
