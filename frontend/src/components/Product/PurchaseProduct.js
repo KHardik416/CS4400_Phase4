@@ -20,13 +20,18 @@ const PurchaseProduct = () => {
   useEffect(() => {
     const fetchProductsAndVansAndBusiness = async () => {
       try {
-        const [productsResponse, vansResponse, businessesResponse] = await Promise.all([
-          fetch("http://localhost:3030/get_products"),
-          fetch("http://localhost:3030/get_vans"),
-          fetch("http://localhost:3030/get_businesses"),
-        ]);
+        const [productsResponse, vansResponse, businessesResponse] =
+          await Promise.all([
+            fetch("http://localhost:3030/get_products"),
+            fetch("http://localhost:3030/get_van_ids"),
+            fetch("http://localhost:3030/get_businesses"),
+          ]);
 
-        if (!productsResponse.ok || !vansResponse.ok || !businessesResponse.ok) {
+        if (
+          !productsResponse.ok ||
+          !vansResponse.ok ||
+          !businessesResponse.ok
+        ) {
           throw new Error("Failed to fetch data");
         }
 
@@ -116,11 +121,7 @@ const PurchaseProduct = () => {
           </label>
           <label>
             Van ID
-            <select
-              name="ID"
-              value={formData.ID}
-              onChange={handleChange}
-            >
+            <select name="ID" value={formData.ID} onChange={handleChange}>
               <option value="">Select Van</option>
               {vans.map((van, index) => (
                 <option key={index} value={van}>
