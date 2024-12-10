@@ -114,8 +114,8 @@ const TakeoverVan = () => {
           <label>
             New Driver
             <select
-              name="driver"
-              value={formData.driver}
+              name="new_driver"
+              value={formData.new_driver}
               onChange={handleChange}
             >
               <option value="">Select Driver</option>

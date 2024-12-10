@@ -82,7 +82,7 @@ const RemoveDriver = () => {
               value={formData.username}
               onChange={handleChange}
             >
-              <option value="">Select Van ID</option>
+              <option value="">Select Driver Username</option>
               {drivers.map((driver, index) => (
                 <option key={index} value={driver}>
                   {driver}

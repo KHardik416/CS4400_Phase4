@@ -62,7 +62,7 @@ const HireEmployee = () => {
             />
           </label>
           <label>
-            Business ID
+            Delivery Service ID
             <input
               type="text"
               name="businessID"
