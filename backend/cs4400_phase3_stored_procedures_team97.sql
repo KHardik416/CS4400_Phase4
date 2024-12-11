@@ -36,7 +36,12 @@ sp_main: begin
 	END IF;
     
 	-- ensure new owner has a unique username
-    if ip_username in (select username from users) then leave sp_main; end if;
+    if ip_username in (select username from users) and ip_username in (select username from business_owners) then
+		leave sp_main; end if;
+	if ip_username in (select username from users) and ip_username not in (select username from business_owners) then
+		insert into business_owners values (ip_username);
+        leave sp_main; end if;
+    
     insert into users values (ip_username, ip_first_name, ip_last_name, ip_address, ip_birthdate);
     insert into business_owners values (ip_username);
 
@@ -187,15 +192,13 @@ sp_main: begin
 	if ip_id not in (select id from delivery_services) then leave sp_main; end if;
 -- ensure that a valid drivers will control the van
 	if ip_driven_by like "" then set ip_driven_by = null; end if;
-	if ip_driven_by not in (select username from drivers) then
-    select 'invalid driver'; leave sp_main; end if;
+	if ip_driven_by not in (select username from drivers) then leave sp_main; end if;
     
     select home_base into homebase
     from delivery_services
     where ip_id = id;
     
     insert into vans values(ip_id, ip_tag, ip_fuel, ip_capacity, ip_sales, ip_driven_by, homebase);
-    select 'inserted successfully';
     
 end //
 delimiter ;
@@ -255,6 +258,7 @@ if ip_id is NULL or ip_long_name is NULL or ip_home_base is NULL then
 -- ensure new delivery service doesn't already exist
 if ip_id in (select id from delivery_services) then leave sp_main; end if;
 -- ensure that the home base location is valid
+if ip_home_base not in (select label from locations) then leave sp_main; end if;
 if ip_home_base in (select home_base from delivery_services) then leave sp_main; end if;
 -- ensure that the manager is valid
 if ip_manager like "" then set ip_manager = null; end if;
@@ -262,7 +266,7 @@ if ip_manager not in (select username from workers) or ip_manager in (select man
 
 insert into delivery_services values(ip_id, ip_long_name, ip_home_base, ip_manager);
 end //
-delimiter ;
+delimiter;
 
 
 -- [9] add_location()
@@ -425,17 +429,20 @@ create procedure takeover_van (
 	in ip_tag integer
 	)
 sp_main: begin
-if ip_id is NULL or ip_tag is NULL then
+if ip_id is NULL or ip_tag is NULL or ip_username is null then
 	leave sp_main; 
     end if;
     
+if ip_id not in (select id from vans where driven_by = ip_username) then leave sp_main; end if;    
 -- ensure that the drivers is not driving for another service
 if ip_username in (select username from work_for where id != ip_id) then leave sp_main; end if;
 -- ensure that the selected van is owned by the same service
 if ip_tag not in (select tag from vans where ip_id = id) then leave sp_main; end if;
 -- ensure that the employees is a valid driver
 if ip_username like "" then set ip_username = null; end if;
-if ip_username not in (select username from drivers) then leave sp_main; end if;
+if ip_username not in (select username from drivers where licenseID is not null and license_type is not null) then 
+	leave sp_main;
+end if;
 
 update vans
 set driven_by = ip_username

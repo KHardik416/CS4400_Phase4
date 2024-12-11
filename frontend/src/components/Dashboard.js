@@ -131,6 +131,10 @@ const Dashboard = () => {
       ],
     },
     { label: "Drivers", options: ["Add Driver", "Remove Driver"] },
+    {
+      label: "Workers",
+      options: ["Add Worker"],
+    },
     { label: "Services", options: ["Add Service", "Manage Service"] },
     {
       label: "Products",
@@ -146,10 +150,6 @@ const Dashboard = () => {
         "View Products",
         "View Services",
       ],
-    },
-    {
-      label: "Workers",
-      options: ["Add Worker"],
     },
   ];
 
