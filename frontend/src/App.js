@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Dashboard from "./components/Dashboard"; 
-import AddEmployee from "./components/Employee/AddEmployee"; 
+import Dashboard from "./components/Dashboard";
+import AddEmployee from "./components/Employee/AddEmployee";
 import HireEmployee from "./components/Employee/HireEmployee";
 import FireEmployee from "./components/Employee/FireEmployee";
 import AddOwner from "./components/Owner/AddOwner";
@@ -27,7 +27,7 @@ import DriverView from "./components/Views/ViewDrivers";
 import LocationView from "./components/Views/ViewLocations";
 import ProductView from "./components/Views/ViewProducts";
 import ServiceView from "./components/Views/ViewServices";
-
+import AddWorker from "./components/Worker/AddWorker";
 
 function App() {
   return (
@@ -60,9 +60,7 @@ function App() {
         <Route path="/location-view" element={<LocationView />} />
         <Route path="/product-view" element={<ProductView />} />
         <Route path="/service-view" element={<ServiceView />} />
-
-
-
+        <Route path="/add-worker" element={<AddWorker />} />
       </Routes>
     </Router>
   );

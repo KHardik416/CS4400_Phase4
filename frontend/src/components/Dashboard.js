@@ -32,6 +32,9 @@ const Dashboard = () => {
       case "Fire Employee":
         navigate("/fire-employee");
         break;
+      case "Add Worker":
+        navigate("/add-worker");
+        break;
       case "Add Owner":
         navigate("/add-owner");
         break;
@@ -143,6 +146,10 @@ const Dashboard = () => {
         "View Products",
         "View Services",
       ],
+    },
+    {
+      label: "Workers",
+      options: ["Add Worker"],
     },
   ];
 
